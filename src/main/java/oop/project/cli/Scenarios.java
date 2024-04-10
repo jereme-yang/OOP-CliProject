@@ -3,6 +3,9 @@ package oop.project.cli;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class Scenarios {
 
@@ -83,8 +86,18 @@ public class Scenarios {
     static Map<String, Object> sqrt(String arguments) {
         //TODO: Parse arguments and extract values.
         String[] args = arguments.split(" ");
-        
-        int number = 0;
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Exactly one argument is required.");
+        }
+        int number;
+        try {
+            number = Integer.parseInt(args[0]);
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("sqrt requires a number");
+        }
+        if (number < 0) {
+            throw new IllegalArgumentException("positional argument must be positive");
+        }
         return Map.of("number", number);
     }
 
