@@ -37,9 +37,14 @@ public class Scenarios {
      *  - {@code right: <your integer type>}
      */
     private static Map<String, Object> add(String arguments) {
-        //TODO: Parse arguments and extract values.
-        int left = 0; //or BigInteger, etc.
-        int right = 0;
+        String[] args = arguments.split(" "); // Split the string by whitespace
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Exactly two arguments are required.");
+        }
+
+        // Parse the arguments
+        int left = Integer.parseInt(args[0]);
+        int right = Integer.parseInt(args[1]);
         return Map.of("left", left, "right", right);
     }
 
@@ -52,9 +57,23 @@ public class Scenarios {
      */
     static Map<String, Object> sub(String arguments) {
         //TODO: Parse arguments and extract values.
+        String[] args = arguments.split(" "); // Split the string by whitespace
+
         Optional<Double> left = Optional.empty();
         double right = 0.0;
-        return Map.of("left", left, "right", right);
+        if (args.length == 2 && args[0].equals("--right")) {
+            right = Double.parseDouble(args[1]);
+        }
+        else if (args.length == 4 && args[0].equals("--left") && args[2].equals("--right")) {
+            right = Double.parseDouble(args[3]);
+            left = Optional.of(Double.parseDouble(args[1]));
+        }
+        else {
+            throw new IllegalArgumentException("Illegal number of named arguments/number of named arguments.");
+        }
+
+        return left.equals(Optional.empty()) ? Map.of("left", left, "right", right) :
+                Map.of("left", left.get(), "right", right);
     }
 
     /**
@@ -63,6 +82,8 @@ public class Scenarios {
      */
     static Map<String, Object> sqrt(String arguments) {
         //TODO: Parse arguments and extract values.
+        String[] args = arguments.split(" ");
+        
         int number = 0;
         return Map.of("number", number);
     }

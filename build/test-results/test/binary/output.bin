@@ -1,0 +1,23 @@
+--left
+1.0
+	--right
+2.0
+true
+--left
+1.0
+false
+	--right
+2.0
+false
+	--right
+false
+	--right
+2.0
+extraneous
+false
+	--write
+2.0
+false
+	--right
+two
+false
