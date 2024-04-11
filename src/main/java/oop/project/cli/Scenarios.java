@@ -129,7 +129,20 @@ public class Scenarios {
      */
     static Map<String, Object> date(String arguments) {
         //TODO: Parse arguments and extract values.
+        String[] args = arguments.split(" ");
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Exactly one argument is required.");
+        }
+        String[] elements = args[0].split("-");
+        if (elements.length != 3) {
+            throw new IllegalArgumentException("The correct format is yyyy-mm-dd");
+        }
         LocalDate date = LocalDate.EPOCH;
+        try {
+            date = LocalDate.of(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2]));
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("date must be integers");
+        }
         return Map.of("date", date);
     }
 
