@@ -17,6 +17,8 @@ public class Main {
             try {
                 var result = Scenarios.parse(input);
                 System.out.println(result);
+            } catch (CommandParseException e) {
+                System.err.println("Error: " + e.getMessage());
             } catch (Exception e) {
                 System.out.println("Unexpected exception: " + e.getClass().getName() + ", " + e.getMessage());
             }

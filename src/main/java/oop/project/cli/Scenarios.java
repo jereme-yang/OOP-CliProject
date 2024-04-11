@@ -30,7 +30,7 @@ public class Scenarios {
             case "sqrt" -> sqrt(arguments);
             case "calc" -> calc(arguments);
             case "date" -> date(arguments);
-            default -> throw new IllegalArgumentException("Unknown command.");
+            default -> throw new CommandParseException("Unknown command: " + base);
         };
     }
 
@@ -42,7 +42,7 @@ public class Scenarios {
     private static Map<String, Object> add(String arguments) {
         String[] args = arguments.split(" "); // Split the string by whitespace
         if (args.length != 2) {
-            throw new IllegalArgumentException("Exactly two arguments are required.");
+            throw new CommandParseException("Exactly two arguments are required for 'add'.");
         }
 
         // Parse the arguments
@@ -72,7 +72,7 @@ public class Scenarios {
             left = Optional.of(Double.parseDouble(args[1]));
         }
         else {
-            throw new IllegalArgumentException("Illegal number of named arguments/number of named arguments.");
+            throw new CommandParseException("Invalid command structure for 'sub'. Usage: sub --left <value> --right <value>");
         }
 
         return left.equals(Optional.empty()) ? Map.of("left", left, "right", right) :
@@ -87,7 +87,7 @@ public class Scenarios {
         //TODO: Parse arguments and extract values.
         String[] args = arguments.split(" ");
         if (args.length != 1) {
-            throw new IllegalArgumentException("Exactly one argument is required.");
+            throw new CommandParseException("Exactly one argument is required for 'sqrt'.");
         }
         int number;
         try {
@@ -111,13 +111,13 @@ public class Scenarios {
         //TODO: Parse arguments and extract values.
         String[] args = arguments.split(" ");
         if (args.length != 1) {
-            throw new IllegalArgumentException("Exactly one argument is required.");
+            throw new CommandParseException("Exactly one argument is required for 'calc'.");
         }
         String subcommand = args[0];
         if (subcommand.equals("add") || subcommand.equals("sub") || subcommand.equals("sqrt")) {
             return Map.of("subcommand", subcommand);
         }
-        throw new IllegalArgumentException("Unknown subcommand");
+        throw new CommandParseException("Unknown command: " + subcommand);
     }
 
     /**
@@ -131,7 +131,7 @@ public class Scenarios {
         //TODO: Parse arguments and extract values.
         String[] args = arguments.split(" ");
         if (args.length != 1) {
-            throw new IllegalArgumentException("Exactly one argument is required.");
+            throw new CommandParseException("Exactly one argument is required for 'date'.");
         }
         String[] elements = args[0].split("-");
         if (elements.length != 3) {

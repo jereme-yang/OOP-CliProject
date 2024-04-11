@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-11T20:03:40" hostname="ADDISONSXPS" time="0.018">
+  <properties/>
+  <testcase name="[1] Add, add 1 2, {left=1, right=2}" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[2] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.002"/>
+  <testcase name="[3] Extraneous Argument, add 1 2 3, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[4] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[5] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
