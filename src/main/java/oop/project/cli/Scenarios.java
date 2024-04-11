@@ -109,8 +109,15 @@ public class Scenarios {
      */
     static Map<String, Object> calc(String arguments) {
         //TODO: Parse arguments and extract values.
-        String subcommand = "";
-        return Map.of("subcommand", subcommand);
+        String[] args = arguments.split(" ");
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Exactly one argument is required.");
+        }
+        String subcommand = args[0];
+        if (subcommand.equals("add") || subcommand.equals("sub") || subcommand.equals("sqrt")) {
+            return Map.of("subcommand", subcommand);
+        }
+        throw new IllegalArgumentException("Unknown subcommand");
     }
 
     /**
