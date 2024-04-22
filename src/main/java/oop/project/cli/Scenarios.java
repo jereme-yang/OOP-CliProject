@@ -1,8 +1,9 @@
 package oop.project.cli;
 
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -16,21 +17,38 @@ public class Scenarios {
      * structure and requirements you may need to make changes to adapt it to
      * your needs - use whatever is convenient for your design.
      */
+    private static ParsedArguments parsedArgs = new ParsedArguments();
+
     public static Map<String, Object> parse(String command) {
         //This assumes commands follow a similar structure to unix commands,
         //e.g. `command [arguments...]`. If your project uses a different
         //structure, e.g. Lisp syntax like `(command [arguments...])`, you may
         //need to adjust this a bit to work as expected.
-        var split = command.split(" ", 2);
-        var base = split[0];
-        var arguments = split.length == 2 ? split[1] : "";
+        Pattern pattern = Pattern.compile("--\\w+|\"[^\"]*\"|\\S+");
+        Matcher matcher = pattern.matcher(command);
+        List<String> tokens = new ArrayList<>();
+
+        while (matcher.find()) {
+            String token = command.substring(matcher.start(), matcher.end());
+            tokens.add(token);
+        }
+
+        String[] tokenArray = tokens.toArray(new String[0]);
+        for (String token : tokenArray) {
+            System.out.println("Token: " + token);
+        }
+
+        var base = tokenArray[0];
+        String[] arguments = tokenArray.length > 1 ? Arrays.copyOfRange(tokenArray, 1, tokenArray.length) : new String[0];
+        parsedArgs.setParsedInputs(arguments);
+
         return switch (base) {
-            case "add" -> add(arguments);
-            case "sub" -> sub(arguments);
-            case "sqrt" -> sqrt(arguments);
-            case "calc" -> calc(arguments);
-            case "date" -> date(arguments);
-            default -> throw new CommandParseException("Unknown command: " + base);
+            case "add" -> add();
+            case "sub" -> sub();
+            case "sqrt" -> sqrt();
+            case "calc" -> calc();
+            case "date" -> date();
+            default -> throw new IllegalArgumentException("Unknown command: " + base);
         };
     }
 
@@ -39,13 +57,14 @@ public class Scenarios {
      *  - {@code left: <your integer type>}
      *  - {@code right: <your integer type>}
      */
-    private static Map<String, Object> add(String arguments) {
-        String[] args = arguments.split(" "); // Split the string by whitespace
-        if (args.length != 2) {
-            throw new CommandParseException("Exactly two arguments are required for 'add'.");
+    private static Map<String, Object> add() {
+        String message = parsedArgs.validateAgainst(parsedArgs.map.get("add"));
+        if (message != "Valid") {
+            throw new IllegalArgumentException(message);
         }
 
-        // Parse the arguments
+        String[] args = parsedArgs.getParsedInputs();
+
         int left = Integer.parseInt(args[0]);
         int right = Integer.parseInt(args[1]);
         return Map.of("left", left, "right", right);
@@ -58,9 +77,13 @@ public class Scenarios {
      *       this as a non-optional decimal value using a default of 0.0.
      *  - {@code right: <your decimal type>} (required)
      */
-    static Map<String, Object> sub(String arguments) {
-        //TODO: Parse arguments and extract values.
-        String[] args = arguments.split(" "); // Split the string by whitespace
+    static Map<String, Object> sub() {
+        String message = parsedArgs.validateAgainst(parsedArgs.map.get("sub"));
+        if (message != "Valid") {
+            throw new IllegalArgumentException(message);
+        }
+
+        String[] args = parsedArgs.getParsedInputs();
 
         Optional<Double> left = Optional.empty();
         double right = 0.0;
@@ -72,7 +95,7 @@ public class Scenarios {
             left = Optional.of(Double.parseDouble(args[1]));
         }
         else {
-            throw new CommandParseException("Invalid command structure for 'sub'. Usage: sub --left <value> --right <value>");
+            throw new IllegalArgumentException("Invalid command structure for 'sub'. Usage: sub --left <value> --right <value>");
         }
 
         return left.equals(Optional.empty()) ? Map.of("left", left, "right", right) :
@@ -83,11 +106,15 @@ public class Scenarios {
      * Takes one positional argument:
      *  - {@code number: <your integer type>} where {@code number >= 0}
      */
-    static Map<String, Object> sqrt(String arguments) {
-        //TODO: Parse arguments and extract values.
-        String[] args = arguments.split(" ");
+    static Map<String, Object> sqrt() {
+        String message = parsedArgs.validateAgainst(parsedArgs.map.get("sqrt"));
+        if (message != "Valid") {
+            throw new IllegalArgumentException(message);
+        }
+
+        String[] args = parsedArgs.getParsedInputs();
         if (args.length != 1) {
-            throw new CommandParseException("Exactly one argument is required for 'sqrt'.");
+            throw new IllegalArgumentException("Exactly one argument is required for 'sqrt'.");
         }
         int number;
         try {
@@ -107,17 +134,21 @@ public class Scenarios {
      *     - Note: Not all projects support subcommands, but if yours does you
      *       may want to take advantage of this scenario for that.
      */
-    static Map<String, Object> calc(String arguments) {
-        //TODO: Parse arguments and extract values.
-        String[] args = arguments.split(" ");
+    static Map<String, Object> calc() {
+        String message = parsedArgs.validateAgainst(parsedArgs.map.get("calc"));
+        if (message != "Valid") {
+            throw new IllegalArgumentException(message);
+        }
+
+        String[] args = parsedArgs.getParsedInputs();
         if (args.length != 1) {
-            throw new CommandParseException("Exactly one argument is required for 'calc'.");
+            throw new IllegalArgumentException("Exactly one argument is required for 'calc'.");
         }
         String subcommand = args[0];
         if (subcommand.equals("add") || subcommand.equals("sub") || subcommand.equals("sqrt")) {
             return Map.of("subcommand", subcommand);
         }
-        throw new CommandParseException("Unknown command: " + subcommand);
+        throw new IllegalArgumentException("Unknown command: " + subcommand);
     }
 
     /**
@@ -127,11 +158,15 @@ public class Scenarios {
      *     - Note: Consider this a type that CANNOT be supported by your library
      *       out of the box and requires a custom type to be defined.
      */
-    static Map<String, Object> date(String arguments) {
-        //TODO: Parse arguments and extract values.
-        String[] args = arguments.split(" ");
+    static Map<String, Object> date() {
+        String message = parsedArgs.validateAgainst(parsedArgs.map.get("date"));
+        if (message != "Valid") {
+            throw new IllegalArgumentException(message);
+        }
+
+        String[] args = parsedArgs.getParsedInputs();
         if (args.length != 1) {
-            throw new CommandParseException("Exactly one argument is required for 'date'.");
+            throw new IllegalArgumentException("Exactly one argument is required for 'date'.");
         }
         String[] elements = args[0].split("-");
         if (elements.length != 3) {
