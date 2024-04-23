@@ -24,11 +24,15 @@ public class ScenariosTests {
 
         public static Stream<Arguments> testAdd() {
             return Stream.of(
+                Arguments.of("Sanity", "add", null),
                 Arguments.of("Add", "add 1 2", Map.of("left", 1, "right", 2)),
                 Arguments.of("Missing Argument", "add 1", null),
                 Arguments.of("Extraneous Argument", "add 1 2 3", null),
                 Arguments.of("Not A Number", "add one two", null),
-                Arguments.of("Not An Integer", "add 1.0 2.0", null)
+                Arguments.of("Not A Number 2", "add one 2", null),
+                Arguments.of("Not An Integer", "add 1.0 2.0", null),
+                Arguments.of("Not An Integer 2", "add 1 2.0", null),
+                Arguments.of("Not An Integer 3", "add 1.0 2", null)
             );
         }
 
@@ -45,6 +49,7 @@ public class ScenariosTests {
 
         public static Stream<Arguments> testSub() {
             return Stream.of(
+                Arguments.of("Sanity", "sub", null),
                 Arguments.of("Sub", "sub --left 1.0 --right 2.0", Map.of("left", 1.0, "right", 2.0)),
                 Arguments.of("Left Only", "sub --left 1.0", null),
                 Arguments.of("Right Only", "sub --right 2.0", Map.of("left", Optional.empty(), "right", 2.0)),
@@ -68,10 +73,12 @@ public class ScenariosTests {
 
         public static Stream<Arguments> testSqrt() {
             return Stream.of(
+                Arguments.of("Sanity", "sqrt", null),
                 Arguments.of("Valid", "sqrt 4", Map.of("number", 4)),
                 Arguments.of("Imperfect Square", "sqrt 3", Map.of("number", 3)),
                 Arguments.of("Zero", "sqrt 0", Map.of("number", 0)),
-                Arguments.of("Negative", "sqrt -1", null)
+                Arguments.of("Negative", "sqrt -1", null),
+                Arguments.of("Not an integer", "sqrt 4.0", null),
             );
         }
 
@@ -109,8 +116,10 @@ public class ScenariosTests {
 
         public static Stream<Arguments> testDate() {
             return Stream.of(
+                Arguments.of("Sanity", "date", null),
                 Arguments.of("Date", "date 2024-01-01", Map.of("date", LocalDate.of(2024, 1, 1))),
-                Arguments.of("Invalid", "date 20240401", null)
+                Arguments.of("Invalid", "date 20240401", null),
+                Arguments.of("Invalid 2", "date 10-20-2004", null)
             );
         }
 
