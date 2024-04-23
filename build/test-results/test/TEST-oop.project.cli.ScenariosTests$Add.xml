@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T03:54:23" hostname="ADDISONSXPS" time="0.009">
+<testsuite name="oop.project.cli.ScenariosTests$Add" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-04-23T04:11:25" hostname="ADDISONSXPS" time="0.025">
   <properties/>
-  <testcase name="[1] Add, add 1 2, {left=1, right=2}" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
-  <testcase name="[2] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
-  <testcase name="[3] Extraneous Argument, add 1 2 3, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
-  <testcase name="[4] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
-  <testcase name="[5] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[1] Sanity, add, null" classname="oop.project.cli.ScenariosTests$Add" time="0.003"/>
+  <testcase name="[2] Add, add 1 2, {right=2, left=1}" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[3] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[4] Extraneous Argument, add 1 2 3, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[5] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[6] Not A Number 2, add one 2, null" classname="oop.project.cli.ScenariosTests$Add" time="0.002"/>
+  <testcase name="[7] Not An Integer, add 1.0 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.002"/>
+  <testcase name="[8] Not An Integer 2, add 1 2.0, null" classname="oop.project.cli.ScenariosTests$Add" time="0.002"/>
+  <testcase name="[9] Not An Integer 3, add 1.0 2, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <system-out><![CDATA[Token: add
+Token: add
 Token: 1
 Token: 2
 Token: add
@@ -19,8 +24,17 @@ Token: add
 Token: one
 Token: two
 Token: add
+Token: one
+Token: 2
+Token: add
 Token: 1.0
 Token: 2.0
+Token: add
+Token: 1
+Token: 2.0
+Token: add
+Token: 1.0
+Token: 2
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

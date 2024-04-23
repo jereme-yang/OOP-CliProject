@@ -1,70 +1,89 @@
 Token: date
-Token: 2024-01-01
 Token: date
-Token: 20240401
-Token: calc
-Token: add
-Token: calc
-Token: sub
-Token: calc
-Token: sqrt
-Token: calc
-	Token: calc
-	Token: unknown
-
-Token: sqrt
-
-
+Token: 2024-01-01
+Token: date
+Token: 20240401
+Token: date
+Token: 10-20-2004
+Token: calc
+Token: add
+Token: calc
+Token: sub
+	Token: calc
+	Token: sqrt
+
+Token: calc
+Token: calc
+Token: unknown
+Token: sqrt
+Token: sqrt
+
 Token: 4
-Token: sqrt
-
+Token: sqrt
+
 Token: 3
-Token: sqrt
-
+Token: sqrt
+
 Token: 0
-Token: sqrt
-Token: -1
-Token: sub
-Token: --left
-Token: 1.0
-Token: --right
-Token: 2.0
-Token: sub
-Token: --left
-Token: 1.0
-Token: sub
-Token: --right
-Token: 2.0
-Token: sub
-Token: --right
-Token: sub
-Token: --right
-Token: 2.0
-Token: extraneous
-Token: sub
-Token: --write
-Token: 2.0
-Token: sub
-Token: --right
-Token: two
-Token: add
-
+Token: sqrt
+Token: -1
+Token: sqrt
+Token: 4.0
+Token: sub
+Token: sub
+Token: --left
+Token: 1.0
+Token: --right
+Token: 2.0
+Token: sub
+Token: --left
+Token: 1.0
+Token: sub
+Token: --right
+Token: 2.0
+Token: sub
+Token: --right
+Token: sub
+Token: --right
+Token: 2.0
+Token: extraneous
+Token: sub
+Token: --write
+Token: 2.0
+Token: sub
+Token: --right
+Token: two
+Token: add
+Token: add
+
 Token: 1
-
+
 Token: 2
-Token: add
-
+Token: add
+
 Token: 1
-Token: add
-
+ Token: add
+ 
 Token: 1
-
+ 
 Token: 2
-
+ 
 Token: 3
-Token: add
-Token: one
-Token: two
-Token: add
-Token: 1.0
-Token: 2.0
+!Token: add
+!Token: one
+!Token: two
+"Token: add
+"Token: one
+"
+Token: 2
+#Token: add
+#Token: 1.0
+#Token: 2.0
+$Token: add
+$
+Token: 1
+$Token: 2.0
+%Token: add
+%Token: 1.0
+%
+Token: 2

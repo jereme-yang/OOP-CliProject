@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="oop.project.cli.ScenariosTests$Date" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-04-23T03:54:22" hostname="ADDISONSXPS" time="0.039">
+<testsuite name="oop.project.cli.ScenariosTests$Date" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-04-23T04:11:25" hostname="ADDISONSXPS" time="0.044">
   <properties/>
-  <testcase name="[1] Date, date 2024-01-01, {date=2024-01-01}" classname="oop.project.cli.ScenariosTests$Date" time="0.032"/>
-  <testcase name="[2] Invalid, date 20240401, null" classname="oop.project.cli.ScenariosTests$Date" time="0.003"/>
+  <testcase name="[1] Sanity, date, null" classname="oop.project.cli.ScenariosTests$Date" time="0.031"/>
+  <testcase name="[2] Date, date 2024-01-01, {date=2024-01-01}" classname="oop.project.cli.ScenariosTests$Date" time="0.003"/>
+  <testcase name="[3] Invalid, date 20240401, null" classname="oop.project.cli.ScenariosTests$Date" time="0.002"/>
+  <testcase name="[4] Invalid 2, date 10-20-2004, null" classname="oop.project.cli.ScenariosTests$Date" time="0.001"/>
   <system-out><![CDATA[Token: date
+Token: date
 Token: 2024-01-01
 Token: date
 Token: 20240401
+Token: date
+Token: 10-20-2004
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

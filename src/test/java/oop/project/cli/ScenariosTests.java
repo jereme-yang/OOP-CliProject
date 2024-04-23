@@ -78,7 +78,7 @@ public class ScenariosTests {
                 Arguments.of("Imperfect Square", "sqrt 3", Map.of("number", 3)),
                 Arguments.of("Zero", "sqrt 0", Map.of("number", 0)),
                 Arguments.of("Negative", "sqrt -1", null),
-                Arguments.of("Not an integer", "sqrt 4.0", null),
+                Arguments.of("Not an integer", "sqrt 4.0", null)
             );
         }
 

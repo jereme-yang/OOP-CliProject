@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="oop.project.cli.ScenariosTests$Calc" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T03:54:23" hostname="ADDISONSXPS" time="0.015">
+<testsuite name="oop.project.cli.ScenariosTests$Calc" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T04:11:25" hostname="ADDISONSXPS" time="0.016">
   <properties/>
-  <testcase name="[1] Add, calc add, {subcommand=add}" classname="oop.project.cli.ScenariosTests$Calc" time="0.001"/>
-  <testcase name="[2] Sub, calc sub, {subcommand=sub}" classname="oop.project.cli.ScenariosTests$Calc" time="0.001"/>
+  <testcase name="[1] Add, calc add, {subcommand=add}" classname="oop.project.cli.ScenariosTests$Calc" time="0.002"/>
+  <testcase name="[2] Sub, calc sub, {subcommand=sub}" classname="oop.project.cli.ScenariosTests$Calc" time="0.002"/>
   <testcase name="[3] Sqrt, calc sqrt, {subcommand=sqrt}" classname="oop.project.cli.ScenariosTests$Calc" time="0.001"/>
-  <testcase name="[4] Missing, calc, null" classname="oop.project.cli.ScenariosTests$Calc" time="0.002"/>
+  <testcase name="[4] Missing, calc, null" classname="oop.project.cli.ScenariosTests$Calc" time="0.001"/>
   <testcase name="[5] Invalid, calc unknown, null" classname="oop.project.cli.ScenariosTests$Calc" time="0.004"/>
   <system-out><![CDATA[Token: calc
 Token: add
