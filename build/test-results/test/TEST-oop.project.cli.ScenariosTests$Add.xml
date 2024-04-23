@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-22T21:15:33" hostname="ADDISONSXPS" time="0.008">
+<testsuite name="oop.project.cli.ScenariosTests$Add" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-04-23T03:54:23" hostname="ADDISONSXPS" time="0.009">
   <properties/>
-  <testcase name="[1] Add, add 1 2, {right=2, left=1}" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
+  <testcase name="[1] Add, add 1 2, {left=1, right=2}" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <testcase name="[2] Missing Argument, add 1, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <testcase name="[3] Extraneous Argument, add 1 2 3, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>
   <testcase name="[4] Not A Number, add one two, null" classname="oop.project.cli.ScenariosTests$Add" time="0.001"/>

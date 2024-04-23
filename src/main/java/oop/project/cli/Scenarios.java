@@ -19,6 +19,13 @@ public class Scenarios {
      */
     private static ParsedArguments parsedArgs = new ParsedArguments();
 
+    /**
+     * Parses and returns the arguments of a command into a Map of names to values.
+     *
+     * @param command The command to parse
+     * @return A Map of names to values
+     * @throws IllegalArgumentException If the command is not recognized or is invalid
+     */
     public static Map<String, Object> parse(String command) {
         //This assumes commands follow a similar structure to unix commands,
         //e.g. `command [arguments...]`. If your project uses a different
@@ -56,6 +63,9 @@ public class Scenarios {
      * Takes two positional arguments:
      *  - {@code left: <your integer type>}
      *  - {@code right: <your integer type>}
+     *
+     * @return A Map containing the left and right values
+     * @throws IllegalArgumentException If the arguments are invalid
      */
     private static Map<String, Object> add() {
         String message = parsedArgs.validateAgainst(parsedArgs.map.get("add"));
@@ -76,6 +86,9 @@ public class Scenarios {
      *     - If your project supports default arguments, you could also parse
      *       this as a non-optional decimal value using a default of 0.0.
      *  - {@code right: <your decimal type>} (required)
+     *
+     * @return A Map containing the left and right values
+     * @throws IllegalArgumentException If the arguments are invalid
      */
     static Map<String, Object> sub() {
         String message = parsedArgs.validateAgainst(parsedArgs.map.get("sub"));
@@ -105,6 +118,9 @@ public class Scenarios {
     /**
      * Takes one positional argument:
      *  - {@code number: <your integer type>} where {@code number >= 0}
+     *
+     * @return A Map containing the number value
+     * @throws IllegalArgumentException If the argument is invalid
      */
     static Map<String, Object> sqrt() {
         String message = parsedArgs.validateAgainst(parsedArgs.map.get("sqrt"));
@@ -133,6 +149,9 @@ public class Scenarios {
      *  - {@code subcommand: "add" | "div" | "sqrt" }, aka one of these values.
      *     - Note: Not all projects support subcommands, but if yours does you
      *       may want to take advantage of this scenario for that.
+     *
+     * @return A Map containing the subcommand value
+     * @throws IllegalArgumentException If the argument is invalid
      */
     static Map<String, Object> calc() {
         String message = parsedArgs.validateAgainst(parsedArgs.map.get("calc"));
@@ -157,6 +176,9 @@ public class Scenarios {
      *    object (say at least yyyy-mm-dd, or whatever you prefer).
      *     - Note: Consider this a type that CANNOT be supported by your library
      *       out of the box and requires a custom type to be defined.
+     *
+     * @return A Map containing the date value
+     * @throws IllegalArgumentException If the argument is invalid
      */
     static Map<String, Object> date() {
         String message = parsedArgs.validateAgainst(parsedArgs.map.get("date"));
